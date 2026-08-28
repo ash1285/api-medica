@@ -1,7 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
+class Papel(models.TextChoices):
+    MEDICO = 'medico', 'Médico'
+    PACIENTE = 'paciente', 'Paciente'
+
+class Especialidade(models.TextChoices):
+    ORTOPEDISTA = 'ortopedista', 'Ortopedista'
+    CARDIOLOGISTA = 'cardiologista', 'Cardiologista'
+    NEUROLOGISTA = 'neurologista', 'Neurologista'
+
 class Usuario(AbstractUser):
-    NIF = models.CharField(max_length=9, unique=True)
-    papel = models.CharField(max_length=10)
-    especialidade = models.CharField(max_length=30, blank=True)
+    nif = models.CharField(max_length=9, unique=True)
+    papel = models.CharField(max_length=10, choices=Papel.choices)
+    especialidade = models.CharField(max_length=30, blank=True, choices=Especialidade.choices) 
