@@ -3,6 +3,6 @@ from django.urls import path, include
 from .views import ConsultaViewSet
 
 router = DefaultRouter()
-router.register('consultas', ConsultaViewSet)
+router.register('consultas', ConsultaViewSet, basename='consulta')
 
 urlpatterns = [path('', include(router.urls))]

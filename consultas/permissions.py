@@ -8,4 +8,10 @@ class PermissaoConsulta(permissions.BasePermission):
         return True
 
     def has_object_permission(self, request, view, obj):
-        return request.user == obj.medico or request.user == obj.paciente
+        if request.user == obj.medico: 
+            return True
+        if request.user == obj.paciente and request.method in ['GET', 'PATCH']:
+            return True
+        return False
+            
+   
